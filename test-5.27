@@ -1,0 +1,29 @@
+#include<stdio.h>
+int leap(int year)
+{
+	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+		return 1;
+	else
+		return 0;
+}
+int number(int year,int month,int day)
+{
+	int sum = 0, i, a[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+	int b[12] = { 31,29,31,30,31,30,31,31,30,31,30,31 };
+	if (leap(year == 1))
+		for (i = 0; i <month-1; i++)
+			sum += b[i];
+	else
+		for (i = 0; i < month-1; i++)
+			sum += a[i];
+	sum += day;
+	return sum;
+}
+int main()
+{
+	int year, month, day, n;
+	printf("请输入年月日:\n");
+	scanf_s("%d%d%d",&year,&month,&day);
+	n = number(year,month,day);
+	printf("是第%d天\n",n);
+}
